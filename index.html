@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Link Locker</title>
+</head>
+
+<body>
+
+
+
+
+    <div id="contenedorApartados" class="apartados" >  </div>
+    
+    <!--overlay para videos-->
+<div id="overlayVideo" class="overlay hidden">
+  <div class="agrmas">
+    <input id="linkvideo" placeholder="Link del video" type="text">
+    <span id="vistaprevia" class="vitapreviatit">Vista Previa:</span>
+    <div id="previewTarjeta" class="tarjeta hidden">
+      <img id="previewImg" src="" alt="" class="tarjetaimg">
+      <div class="texto">
+        <span id="titvideo" class="titulovideo"></span>
+        <span id="canalvideo" class="canalvideo"></span>
+      </div>
+      <div class="btn rojo">Eliminar</div>
+    </div>
+    <div class="botones">
+      <div id="guardarVideo" class="btn verde">Guardar</div>
+      <div id="cancelarVideo" class="btn rojo">Cancelar</div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--Overlay para secciones-->
+    <div id="overlay" class="overlay hidden">
+        <div class="agrmas">
+            <input id="inpapartado" placeholder="Apartado" type="text">
+            <div class="botones">
+                <div id="guardar" class="btn verde">Guardar</div>
+                <div id="cancelar" class="btn rojo">Cancelar</div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!--btn agregar más-->
+    <div id="agrmasapartados" class="btnagrmas">
+        <span> <svg xmlns="http://www.w3.org/2000/svg" height="48px" viewBox="0 -960 960 960" width="48px"
+                fill="#D33434">
+                <path d="M450-450H200v-60h250v-250h60v250h250v60H510v250h-60v-250Z" />
+            </svg> </span>
+    </div>
+
+
+</body>
+<script src="js.js"></script>
+
+</html>
