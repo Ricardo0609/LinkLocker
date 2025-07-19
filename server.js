@@ -1,12 +1,16 @@
 const express = require('express');
 const Database = require('better-sqlite3');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 const db = new Database('videos.db');
 
 app.use(cors());
 app.use(express.json());
+
+// Servir archivos estáticos (CSS, JS, imágenes, etc.)
+app.use(express.static(__dirname));
 
 // Crear tabla de videos
 db.prepare(`
@@ -18,8 +22,6 @@ db.prepare(`
     apartadoId TEXT
   )
 `).run();
-
-
 
 // Guardar video
 app.post('/api/videos', (req, res) => {
@@ -35,9 +37,6 @@ app.post('/api/videos', (req, res) => {
   }
 });
 
-
-
-
 // Obtener todos los videos
 app.get('/api/videos', (req, res) => {
   const videos = db.prepare('SELECT * FROM videos').all();
@@ -50,20 +49,16 @@ app.get('/test-db', (req, res) => {
     const tablas = db.prepare("SELECT name FROM sqlite_master WHERE type = ?").all('table');
     res.json({ tablas });
   } catch (err) {
-  console.error("Error al insertar video:", err);
-  res.status(500).json({ error: 'Error al guardar en la base de datos', detail: err.message });
-}
+    console.error("Error al consultar la base de datos:", err);
+    res.status(500).json({ error: 'Error al consultar la base de datos', detail: err.message });
+  }
+});
 
+// Servir HTML principal
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(3000, () => {
   console.log('Servidor corriendo en http://localhost:3000');
-});
-
-
-
-
-const path = require('path');
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html'));
 });
